@@ -35,15 +35,15 @@ return true
 // dominantDirection ///////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function dominantDirection(text) {
-  let counts = countBy(text, char => {
+function dominantDirection(string) {
+  let counted = countBy(string, char => {
     let script = characterScript(char.codePointAt(0));
     return script ? script.direction : "none";
-  }).filter(c => c.name !== "none");
+  }).filter(({name}) => name !== "none");
 
-  if (counts.length === 0) return "ltr";
+  if (counted.length === 0) return "ltr";
 
-  return counts.reduce((a, b) => a.count > b.count ? a : b).name;
+  return counted.reduce((a, b) => a.count > b.count ? a : b).name;
 }
 
 // /////////////////////////////////////////////////////////////////////////////
